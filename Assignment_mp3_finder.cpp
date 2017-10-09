@@ -1,6 +1,6 @@
 /*  User Information
 Avinash Koshal
-student of 3rd Sem A1
+student of BE 3rd Sem (CSE-A1)
 MIET jammu
 */
 
