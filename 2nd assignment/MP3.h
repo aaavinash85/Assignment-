@@ -1,4 +1,9 @@
 
+/*  User Information
+Avinash Koshal
+student of BE 3rd Sem (CSE-A1)
+MIET jammu
+*/
 #include <windows.h>
 #include <mmsystem.h>
 #include <strmif.h>
