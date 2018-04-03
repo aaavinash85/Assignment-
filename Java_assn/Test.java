@@ -1,4 +1,4 @@
-/*   
+/*
 *@author Avinash Koshal
 */
 import java.awt.*;
@@ -39,7 +39,6 @@ public class Test {    //main class of the program
             }
         });
 
-
         topLabel = new Label();
         topLabel.setAlignment(Label.CENTER);
         message = new Label();
@@ -63,13 +62,9 @@ public class Test {    //main class of the program
         myFrame.add(message);
         myFrame.add(errorMessage);
         myFrame.add(panel2);
-
-
         myFrame.setVisible(true);
         topLabel.setText("click to browse files");
     }
-
-
 
     public static String checkOS() {  //check for the OS type
         String store = "";
@@ -85,8 +80,6 @@ public class Test {    //main class of the program
         }
         return store;
     }
-
-
     public static String getExtension(String fileName){  //return the filename selected by the user
 
                     String extension = "";
@@ -95,11 +88,7 @@ public class Test {    //main class of the program
                     extension = fileName.substring(i+1);// to get part of string substring() is used. Here (i+1) is the begining index of the substring.
                 }
                 return extension;
-
     }
-
-
-
     private void action() {
 
         Button button1 = new Button("BROWSE");  //creation of button1
@@ -131,7 +120,6 @@ public class Test {    //main class of the program
                         + " , from Directory :->    " + fileDialog.getDirectory() );
                 bottomlabel2.setText( "The length of file is "+ file.length() + "  Bytes"
                         + " ( " + (file.length()/1024) + " kB ) and the extension (type of file) is " + getExtension(fileName));
-        
 
                 //Here first, the write protection of directory is checked and the the file is saved to that location
                 if(file.canWrite()){
@@ -143,15 +131,9 @@ public class Test {    //main class of the program
                     } catch (IOException ex) {
                         errorMessage.setText("I/O Error when copying file. Check write protections.");
                     }
-
-
                 }
-
-
             }
         });
-
-
 
         button2.addActionListener(new ActionListener() {
             @Override
@@ -159,23 +141,17 @@ public class Test {    //main class of the program
                 fileDialog.setDirectory(checkOS());
                 fileDialog.setVisible(true);
 
-
-
             }
         });
-
-
     }
 
     public static void split(String fileName) throws IOException {
-
 
         RandomAccessFile raf = new RandomAccessFile(fileName, "r");
         long numSplits = 10;
         long sourceSize = raf.length();
         long bytesPerSplit = sourceSize / numSplits;
         long remainingBytes = sourceSize % numSplits;
-
         int maxReadBufferSize = 8 * 1024; //8KB
         for (int destIx = 1; destIx <= numSplits; destIx++) {
             BufferedOutputStream bw = new BufferedOutputStream(new FileOutputStream(checkOS() + "split." + destIx + "." + getExtension(fileName)));//getting path by checkOS()
@@ -194,7 +170,6 @@ public class Test {    //main class of the program
             bw.close();
         }
         if (remainingBytes > 0)
-
         {
             //BufferedOutputStream bw = new BufferedOutputStream(new FileOutputStream(checkOS() + "RemainingSplit." + (numSplits + 1)));
             BufferedOutputStream bw = new BufferedOutputStream(new FileOutputStream(checkOS() + "RemainingSplit." + getExtension(fileName)));
@@ -202,9 +177,7 @@ public class Test {    //main class of the program
             bw.close();
         }
         raf.close();
-
     }
-
     public static void readWrite(RandomAccessFile raf, BufferedOutputStream bw, long numBytes) throws IOException {
         byte[] buf = new byte[(int) numBytes];
         int val = raf.read(buf);
@@ -212,35 +185,7 @@ public class Test {    //main class of the program
             bw.write(buf);
         }
     }
-
-
-    public int characterCount(String fileName) throws IOException {
-        File file = new File(fileName);            //location of the file selected by the user
-        FileInputStream fileStream = new FileInputStream(file);
-        InputStreamReader input = new InputStreamReader(fileStream);
-        BufferedReader reader = new BufferedReader(input);
-
-        String line;
-
-        // Initializing counters
-        int charCount = 0;
-
-
-        // Reading line by line from the
-        // file until a null is returned
-        while((line = reader.readLine()) != null)
-        {
-            if(!(line.equals("")))
-            {
-                charCount += line.length();
-            }
-        }
-
-        return charCount;
-    }
-
-
-    public static void main(String[] args) throws IOException {
+      public static void main(String[] args) throws IOException {
         Test test = new Test();   //obect of the Test class
        // awt.checkOS();
         test.action();
